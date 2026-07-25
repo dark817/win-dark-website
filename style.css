@@ -1,0 +1,194 @@
+/* ==========================================
+   إعدادات عامة
+   ========================================== */
+body {
+    background-color: #3063e4;
+    color: #e0f2fe;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==========================================
+   Container الشفاف الزجاجي
+   ========================================== */
+.container {
+    position: relative;
+    width: 80%;
+    min-height: 80vh;
+    margin: 10vh auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px;
+    border-radius: 24px;
+    box-sizing: border-box;
+    
+    background-color: rgba(15, 23, 42, 0.4); 
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px); 
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); 
+    overflow: hidden;
+}
+
+/* ==========================================
+   الهيدر والقائمة الرئيسية (شكل الدائرة العريضة)
+   ========================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    z-index: 10;
+}
+
+.logo {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    font-size: 28px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 12px; /* المسافة بين أزرار القائمة */
+    align-items: center;
+}
+
+/* تصميم الاختيارات على شكل كبسولة / دائرة عريضة */
+ul li a {
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-block;
+    padding: 8px 20px; /* مساحة داخلية تعطى الشكل الدائري */
+    border-radius: 50px; /* تجعل الحواف دائرية عريضة */
+    transition: all 0.3s ease;
+}
+
+/* تأثير الماوس عند التمرير فوق الزر (Hover) */
+ul li a:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.15); /* خلفية شفافة مضيئة */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* زر الصفحة الحالية (Active Capsule) */
+ul li a.active {
+    color: #ffffff;
+    background-color: #2563eb; /* كبسولة ملونة بالأزرق */
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+/* ==========================================
+   محتوى الصفحة والصورة
+   ========================================== */
+.hero-section {
+    position: absolute;
+    left: 40px;
+    bottom: 60px;
+    text-align: left;
+    direction: ltr;
+    z-index: 2;
+}
+
+.hero-section h1 {
+    color: #ffffff;
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0 0 15px 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-section p {
+    color: #cbd5e1;
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 450px;
+    margin: 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.hero-image {
+    position: absolute;
+    right: 40px;
+    bottom: 50px;
+    width: 420px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+/* ==========================================
+   📱 التجاوب مع التليفونات والشاشات الصغيرة
+   ========================================== */
+@media (max-width: 768px) {
+    .container {
+        width: 92%;
+        margin: 4vh auto;
+        padding: 24px 20px;
+        min-height: auto;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    ul {
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    ul li a {
+        font-size: 13px;
+        padding: 6px 14px;
+    }
+
+    .hero-section {
+        position: static;
+        margin-top: 30px;
+        text-align: center;
+        direction: ltr;
+        width: 100%;
+    }
+
+    .hero-section h1 {
+        font-size: 24px;
+    }
+
+    .hero-section p {
+        font-size: 14px;
+        max-width: 100%;
+    }
+
+    .hero-image {
+        position: static;
+        width: 100%;
+        height: auto;
+        max-height: 220px;
+        margin-top: 25px;
+    }
+}

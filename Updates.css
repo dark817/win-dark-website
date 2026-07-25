@@ -1,0 +1,55 @@
+.updates-section {
+  padding: 40px 20px;
+  color: #ffffff;
+}
+
+.update-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 25px;
+  backdrop-filter: blur(10px);
+}
+
+.update-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge {
+  background: #2563eb;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.update-details h3 {
+  margin-top: 15px;
+  color: #60a5fa;
+}
+
+.update-details ul {
+  margin-left: 20px;
+  line-height: 1.8;
+}
+
+.update-actions {
+  margin-top: 25px;
+  display: flex;
+  gap: 15px;
+}
+
+.btn-download {
+  background: #2563eb;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn-download:hover {
+  background: #1d4ed8;
+}
