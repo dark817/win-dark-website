@@ -3,14 +3,350 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WIN DARK 11</title>
-  <link rel="stylesheet" href="style.css">
+  <title>WIN DARK 11 - Animated</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* =========================================
+       1. General Reset & Base Styles
+       ========================================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #3b71ed; /* خلفية الصفحة الزرقاء */
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px; /* Padding للموبايل */
+      overflow-x: hidden;
+    }
+
+    /* =========================================
+       2. Card Container (Zoomed In Size)
+       ========================================= */
+    .card-container {
+      background-color: #234caa; /* الإطار الأزرق الغامق */
+      width: 100%;
+      max-width: 1100px; /* حجم مكبر لتأثير الزوم */
+      border-radius: 24px;
+      padding: 60px; /* زيادة Padding لتبدو أكثر ضخامة */
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+      color: #ffffff;
+      
+      /* تأثير الزوم (Scale) */
+      transform: scale(1.05); 
+      transform-origin: center;
+      
+      /* أنيميشن ظهور الإطار بأكمله */
+      opacity: 0;
+      animation: cardAppear 0.8s ease-out forwards;
+    }
+
+    /* =========================================
+       3. Navbar & Animated Links
+       ========================================= */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 70px;
+      opacity: 0;
+      animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.6rem; /* تكبير اللوجو */
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    /* أنيميشن عند الوقوف على اللوجو */
+    .logo:hover {
+      transform: translateY(-2px) scale(1.02);
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    /* تصميم الروابط مع أنيميشن الـ Hover */
+    .nav-links a {
+      position: relative;
+      color: #e0e0e0;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 11px 23px; /* تكبير الأزرار */
+      border-radius: 25px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* حركة ارتدادية ناعمة */
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* أنيميشن الزر المفعّل (Home page) */
+    .nav-links a.active {
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.5);
+      animation: pulseGlow 3s infinite alternate; /* نبض خفيف متكرر */
+    }
+
+    /* تأثير الـ Hover على باقي الأزرار */
+    .nav-links a:not(.active):hover {
+      color: #ffffff;
+      background-color: rgba(255, 255, 255, 0.12);
+      transform: translateY(-4px) scale(1.05); /* ارتفاع وزوم خفيف */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* تأثير الضغط على الزر */
+    .nav-links a:active {
+      transform: translateY(-2px) scale(0.98);
+    }
+
+    /* =========================================
+       4. Content Layout & Text Zoom
+       ========================================= */
+    .content-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.6s forwards;
+    }
+
+    .text-content {
+      flex: 1.2;
+    }
+
+    .text-content h1 {
+      font-size: 2.5rem; /* تكبير العنوان */
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+      line-height: 1.25;
+      text-transform: uppercase;
+      /* أنيميشن تحوم خفيفة للنص */
+      animation: floatText 4s ease-in-out infinite alternate;
+    }
+
+    .text-content p {
+      color: #c0d1f7;
+      font-size: 1.1rem; /* تكبير النص الوصفي */
+      line-height: 1.7;
+    }
+
+    /* =========================================
+       5. Image Box with Zoom and Shadow
+       ========================================= */
+    .image-box {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .image-box img {
+      width: 100%;
+      max-width: 460px; /* تكبير الصورة */
+      height: 270px; /* تكبير الارتفاع */
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+      
+      /* تأثير انتقالي للصورة عند الوقوف عليها */
+      transition: transform 0.5s ease, box-shadow 0.5s ease, filter 0.5s ease;
+      animation: imageGlowpulse 5s infinite alternate;
+    }
+
+    /* أنيميشن الـ Hover على الصورة */
+    .image-box img:hover {
+      transform: scale(1.04) translateY(-5px) rotate(1deg); /* تكبير، ارتفاع، ودوران بسيط */
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      filter: brightness(1.1); /* زيادة السطوع */
+    }
+
+    /* =========================================
+       6. Keyframes Animations (أنيميشن الحركات)
+       ========================================= */
+
+    /* أنيميشن نبض الإضاءة للزر النشط */
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+      }
+      100% {
+        box-shadow: 0 6px 30px rgba(59, 130, 246, 0.8), 0 0 10px rgba(59, 130, 246, 0.5);
+      }
+    }
+
+    /* أنيميشن دخول الشريط العلوي من الأعلى */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* أنيميشن دخول المحتوى من الأسفل */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* أنيميشن ظهور الإطار الأساسي مع زوم */
+    @keyframes cardAppear {
+      0% {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      70% {
+        opacity: 1;
+        transform: scale(1.06); /* ارتداد خفيف لتكبير أكثر */
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1.05); /* استقرار على الحجم المكبر */
+      }
+    }
+
+    /* أنيميشن تحوم خفيفة لنص العنوان الرئيسي */
+    @keyframes floatText {
+      0% {
+        transform: translateY(0px);
+      }
+      100% {
+        transform: translateY(-5px);
+      }
+    }
+    
+    /* أنيميشن نبض خفيف للظل حول الصورة */
+    @keyframes imageGlowpulse {
+      0% {
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+      }
+      100% {
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35), 0 0 10px rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    /* =========================================
+       7. Mobile & Tablet Responsiveness (تجاوب الموبايل)
+       ========================================= */
+
+    /* أجهزة التابلت والموبايل الكبير (أقل من 900px) */
+    @media (max-width: 900px) {
+      .card-container {
+        transform: scale(1); /* إلغاء الزوم لتناسب الشاشات الصغيرة */
+        padding: 35px 25px;
+        max-width: 100%;
+        animation: cardAppearMobile 0.8s ease-out forwards;
+      }
+
+      @keyframes cardAppearMobile {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+      }
+
+      .navbar {
+        flex-direction: column; /* ترتيب رأسي للهيدر */
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap; /* السماح للأزرار بالنزول عند الحاجة */
+        gap: 10px;
+      }
+
+      .nav-links a {
+        font-size: 0.85rem; /* تصغير الخط */
+        padding: 9px 18px; /* تصغير حجم الأزرار */
+      }
+
+      .content-section {
+        flex-direction: column-reverse; /* ترتيب رأسي للمحتوى (الصورة تحت) */
+        gap: 30px;
+        text-align: center; /* توسيط النص */
+      }
+
+      .text-content h1 {
+        font-size: 2rem; /* تصغير العنوان */
+      }
+
+      .text-content p {
+        font-size: 1rem;
+      }
+
+      .image-box {
+        justify-content: center; /* توسيط الصورة */
+        width: 100%;
+      }
+
+      .image-box img {
+        max-width: 100%; /* ملء العرض */
+        height: auto; /* أبعاد مرنة */
+        max-height: 250px;
+      }
+    }
+
+    /* الموبايلات الصغيرة (أقل من 480px) */
+    @media (max-width: 480px) {
+      .navbar {
+        gap: 15px;
+      }
+
+      .nav-links {
+        justify-content: space-evenly; /* توزيع متساوٍ للأزرار */
+        gap: 8px;
+      }
+
+      .nav-links a {
+        flex: 1; /* جعل الأزرار تأخذ مساحات متساوية */
+        font-size: 0.8rem;
+        padding: 8px 10px;
+      }
+
+      .text-content h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
+  <!-- Card Container بأكمله هو العنصر المكبر (Zoomed In) -->
   <div class="card-container">
-    <!-- Navbar / Header -->
+    
+    <!-- Navbar / Header (يحتوي على أنيميشن دخول ورواط حركية) -->
     <header class="navbar">
       <div class="logo">WIN DARK 11</div>
       <nav class="nav-links">
@@ -21,7 +357,7 @@
       </nav>
     </header>
 
-    <!-- Main Content -->
+    <!-- Main Content (يحتوي على أنيميشن تحوم) -->
     <main class="content-section">
       <div class="text-content">
         <h1>THE ULTIMATE DARK EDITION</h1>
@@ -32,8 +368,9 @@
         </p>
       </div>
 
+      <!-- Image Box (يحتوي على أنيميشن تكبير وتحوم) -->
       <div class="image-box">
-        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Abstract Wallpaper">
+        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="WIN DARK 11 Abstract Wallpaper">
       </div>
     </main>
   </div>
