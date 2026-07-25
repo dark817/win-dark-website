@@ -9,7 +9,7 @@
 }
 
 body {
-  background-color: #3b71ed; /* Background color of the page */
+  background-color: #3b71ed;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -19,33 +19,32 @@ body {
 }
 
 /* =========================================
-   Card Container (Zoomed In Size)
+   Card Container (Desktop Zoomed)
    ========================================= */
 .card-container {
-  background-color: #234caa; /* Darker blue inner container */
+  background-color: #234caa;
   width: 100%;
-  max-width: 1100px; /* حجوم مكبر لتأثير الزوم */
+  max-width: 1100px;
   border-radius: 24px;
-  padding: 55px; /* زيادة الهوامش الداخلية */
+  padding: 50px;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
   color: #ffffff;
-  transform: scale(1.05); /* تكبير الإطار بالكامل */
+  transform: scale(1.02);
   transform-origin: center;
   animation: cardAppear 0.8s ease-out forwards;
 }
 
 /* =========================================
-   Navbar & Header Animations
+   Navbar & Animations
    ========================================= */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
   animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* حركة وحجم الشعار */
 .logo {
   font-weight: 800;
   font-size: 1.5rem;
@@ -59,24 +58,24 @@ body {
   text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
 }
 
-/* روابط وتأثيرات أزرار النوافذ */
 .nav-links {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   align-items: center;
+  flex-wrap: wrap; /* للسماح للأزرار بالنزول عند الحاجة */
 }
 
 .nav-links a {
   position: relative;
   color: #e0e0e0;
   text-decoration: none;
-  font-size: 1rem;
-  padding: 10px 22px;
+  font-size: 0.95rem;
+  padding: 10px 20px;
   border-radius: 25px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  white-space: nowrap;
 }
 
-/* الزر المفعل (Home Page) مع توهج متحرك */
 .nav-links a.active {
   background: linear-gradient(135deg, #3b82f6, #1d4ed8);
   color: #fff;
@@ -85,7 +84,6 @@ body {
   animation: pulseGlow 3s infinite alternate;
 }
 
-/* تأثير تحريك الماوس فوق باقي الأزرار */
 .nav-links a:not(.active):hover {
   color: #ffffff;
   background-color: rgba(255, 255, 255, 0.12);
@@ -104,7 +102,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 50px;
+  gap: 40px;
   animation: fadeInUp 1s ease-out 0.2s backwards;
 }
 
@@ -113,7 +111,7 @@ body {
 }
 
 .text-content h1 {
-  font-size: 2.3rem;
+  font-size: 2.2rem;
   font-weight: 800;
   letter-spacing: 1px;
   margin-bottom: 20px;
@@ -122,12 +120,12 @@ body {
 
 .text-content p {
   color: #c0d1f7;
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 /* =========================================
-   Image Container
+   Image Box
    ========================================= */
 .image-box {
   flex: 1;
@@ -137,8 +135,8 @@ body {
 
 .image-box img {
   width: 100%;
-  max-width: 450px;
-  height: 260px;
+  max-width: 420px;
+  height: 250px;
   object-fit: cover;
   border-radius: 16px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
@@ -153,8 +151,6 @@ body {
 /* =========================================
    Keyframes Animations
    ========================================= */
-
-/* أنيميشن نُزول الشريط العلوي */
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -166,7 +162,6 @@ body {
   }
 }
 
-/* أنيميشن صعود المحتوى الرئيسي */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -178,7 +173,6 @@ body {
   }
 }
 
-/* أنيميشن ظهور الكارت */
 @keyframes cardAppear {
   from {
     opacity: 0;
@@ -186,11 +180,10 @@ body {
   }
   to {
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 }
 
-/* أنيميشن نبض إضاءة الزر النشط */
 @keyframes pulseGlow {
   0% {
     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
@@ -201,26 +194,90 @@ body {
 }
 
 /* =========================================
-   Responsive Design
+   Mobile & Tablet Responsiveness (تجاوب الموبايل)
    ========================================= */
+
+/* أجهزة التابلت والموبايل الكبير (أقل من 900px) */
 @media (max-width: 900px) {
   .card-container {
-    transform: scale(1);
-    padding: 30px;
+    transform: scale(1); /* إلغاء الزوم لتناسب الشاشات الصغيرة */
+    padding: 30px 20px;
   }
 
   .navbar {
     flex-direction: column;
     gap: 20px;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 35px;
   }
-  
+
+  .nav-links {
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+    padding: 8px 14px;
+  }
+
   .content-section {
-    flex-direction: column-reverse;
+    flex-direction: column-reverse; /* وضع الصورة فوق أو تحت النص حسب التناسق */
+    gap: 30px;
+    text-align: center;
   }
-  
+
+  .text-content h1 {
+    font-size: 1.75rem;
+  }
+
+  .text-content p {
+    font-size: 0.95rem;
+  }
+
+  .image-box {
+    justify-content: center;
+    width: 100%;
+  }
+
   .image-box img {
     max-width: 100%;
     height: auto;
+    max-height: 240px;
+  }
+}
+
+/* الموبايلات الصغرى (أقل من 480px) */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .card-container {
+    padding: 20px 15px;
+    border-radius: 16px;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .nav-links a {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+
+  .text-content h1 {
+    font-size: 1.4rem;
+  }
+
+  .text-content p {
+    font-size: 0.85rem;
   }
 }
