@@ -7,7 +7,6 @@ body {
     padding: 0;
 }
 
-
 .container {
     position: relative;
     width: 85%;
@@ -22,7 +21,6 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.08); 
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); 
 }
-
 
 .navbar {
     display: flex;
@@ -47,23 +45,35 @@ ul {
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 30px;
+    gap: 15px;
+    align-items: center;
 }
 
+/* تنسيق الروابط الخارجية للشريط العلوي */
 ul li a {
     color: #e2e8f0;
     text-decoration: none;
-    font-size: 17px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 600;
     display: inline-block;
-    transition: transform 0.3s ease, color 0.3s ease;
+    padding: 10px 24px; /* مساحة داخلية لإنشاء شكل الزرار */
+    border-radius: 50px; /* حواف دائرية بيضاوية بالكامل */
+    transition: all 0.3s ease;
 }
 
-ul li a:hover, ul li a.active {
+/* عند مرور الماوس على أي رابط غير نشط */
+ul li a:hover {
     color: #ffffff;
-    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.12); /* خلفية خفيفة ناعمة */
 }
 
+/* الصفحة النشطة (Active) بنفس شكل الصورة */
+ul li a.active {
+    color: #ffffff;
+    background-color: #2563eb; /* اللون الأزرق المضيء */
+    box-shadow: 0 4px 18px rgba(37, 99, 235, 0.5); /* ظل زرقاء متوهجة */
+    font-weight: 700;
+}
 
 .details-wrapper {
     display: flex;
@@ -94,7 +104,6 @@ ul li a:hover, ul li a.active {
     line-height: 1.6;
     margin-bottom: 25px;
 }
-
 
 .specs-list {
     list-style: none;
@@ -153,4 +162,58 @@ ul li a:hover, ul li a.active {
     height: 100%;
     object-fit: cover;
     display: block;
+}
+
+/* ==========================================
+   إصلاحات التجاوب مع شاشات الموبايل (Responsive)
+   ========================================== */
+
+@media (max-width: 768px) {
+    .container {
+        width: 92%;
+        margin: 20px auto;
+        padding: 20px;
+        min-height: auto;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        text-align: center;
+    }
+
+    ul {
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    ul li a {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .details-wrapper {
+        flex-direction: column-reverse;
+        gap: 25px;
+    }
+
+    .details-info h2 {
+        font-size: 24px;
+    }
+
+    .details-info p, .specs-list li {
+        font-size: 14px;
+    }
+
+    .download-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .preview-img {
+        width: 100%;
+    }
 }
